@@ -8,7 +8,7 @@ This is a simple computer vision project in Python that uses the webcam to perfo
 - Frames Per Second (FPS) display on the screen.
 
 ## Technologies and Libraries
-- Python
+- Python (3.12.0)
 - OpenCV
 - MediaPipe
 

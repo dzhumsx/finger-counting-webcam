@@ -21,16 +21,6 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 900)
 
 prevtime = 0
 
-def check_movement(hand_landmarks):
-    global last_position
-    media_x = round(sum([landmark.x for landmark in hand_landmarks.landmark]) / len(hand_landmarks.landmark), 2)
-    if last_position is not None:
-        if media_x < last_position:
-            print("Moving left")
-        elif media_x > last_position:
-            print("Moving right")
-    last_position = media_x
-
 while cap.isOpened():
     success, frame = cap.read()
     if not success:
@@ -77,7 +67,6 @@ while cap.isOpened():
         total_fingers = fingers.count(1)
         cv2.putText(frame, str(total_fingers), (100, 100), cv2.FONT_HERSHEY_SIMPLEX, 4, (75, 3, 89), 3, cv2.LINE_AA)
     
-    '''
     if resultsFaceMesh.multi_face_landmarks:
         for face_landmarks in resultsFaceMesh.multi_face_landmarks:
             mp_drawing.draw_landmarks(
@@ -85,10 +74,9 @@ while cap.isOpened():
                 face_landmarks, 
                 mp_face_mesh.FACEMESH_TESSELATION
             )
-    '''
-    new_time = time.time()
     
     # Calculate FPS: 1 / (current_time - previous_time)
+    new_time = time.time()
     fps = 1 / (new_time - prevtime)
     prevtime = new_time    
 
